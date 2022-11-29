@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  gap: 5px;
+
+  &__logoImg {
+    height: 100px;
+    width: 200px;
+    background-image: url("../images/logo.4f82cd73.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  &__birdImg {
+    height: 100px;
+    width: 100px;
+    background-image: url("../images/headerImg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  user-select: none;
+
+  &__btn {
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    &:hover {
+      color: rgb(0, 164, 0);
+    }
+    &:active {
+      color: rgb(0, 209, 0);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  &__rssLogo {
+    height: 50px;
+    width: 120px;
+    background-image: url('../images/rs_school_js.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  &__ghLogo {
+    height: 50px;
+    width: 120px;
+    background-image: url('../images/GitHub_Logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  &__year{
+    color: white;
+    font-size: 25px;
+  }
+}
