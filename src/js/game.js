@@ -5,6 +5,7 @@ import birdsData from './birds'
 import createPlayer from './createPlayer'
 import state from './state'
 import { renderPage } from '../index'
+import pause from '../images/createPlayer/pause.svg'
 
 export default function startGame(contentBox) {
   clearState() // сбрасывает параметры игры
@@ -19,6 +20,7 @@ function clearState() { // сбрасывает параметры игры
 }
 
 function game(contentBox) { // создает игровые блоки текущего уровня
+
   console.log('correct answer', state.numQuest)
   const game = createElement(contentBox, 'div', 'game')
   const container = createElement(game, 'div', 'container')
@@ -39,6 +41,7 @@ function game(contentBox) { // создает игровые блоки теку
 }
 
 function nextLevel(contentBox) { // переход на следующий уровень
+  document.querySelectorAll('.player__playPause').forEach(elem => { if (elem.src === pause) elem.dispatchEvent(new Event("click")) });
   state.level += 1 // переход на следующий уровень
   state.numQuest = Math.floor(Math.random() * 6) // выбор случайного вопроса
   state.questScore = 5 // сбрасывает количество очков за текущий вопрос
@@ -60,11 +63,13 @@ function renderLevelRow(levelRow) { // заполняет полоску уро�
 }
 
 function renderQuest(questBox, checkWin) { //заполняет блок вопроса
+  document.querySelectorAll('.player__playPause').forEach(elem => { if (elem.src === pause) elem.dispatchEvent(new Event("click")) });
+  if (questPlayer) questPlayer.pause()
   while (questBox.firstChild) questBox.removeChild(questBox.firstChild) // очищаем узел от старой информации
   const questBirdImg = createElement(questBox, 'img', 'game__questBirdImg')
   const questPlayerBox = createElement(questBox, 'div', 'game__questPlayerBox')
   const questName = createElement(questPlayerBox, 'div', 'game__questName')
-  const questPlayer = createPlayer(questPlayerBox, birdsData[state.level][state.numQuest].audio /*sound*/); // плеер (родительский узел и ссылку на аудио)
+  const questPlayer = createPlayer(questPlayerBox, birdsData[state.level][state.numQuest].audio /*sound*/) // плеер (родительский узел и ссылку на аудио)
   if (checkWin) { // сработает если дан правильный ответ
     questBirdImg.src = birdsData[state.level][state.numQuest].image
     questName.textContent = birdsData[state.level][state.numQuest].name
@@ -101,6 +106,7 @@ function checkWins(ansverBox, questBox, nextLevelBtn, levelRow, ansver, numOfBir
 }
 
 function renderAboutBird(aboutBirdBox, numOfBird) { //заполняет блок о выбранной птице
+  document.querySelectorAll('.player__playPause').forEach(elem => { if (elem.src === pause) elem.dispatchEvent(new Event("click")) });
   while (aboutBirdBox.firstChild) aboutBirdBox.removeChild(aboutBirdBox.firstChild) // очищаем узел от старой информации
   const birdImg = createElement(aboutBirdBox, 'img', 'game__birdImg')
   birdImg.src = birdsData[state.level][numOfBird].image
